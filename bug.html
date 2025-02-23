@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uncommon HTML Bug</title>
+</head>
+<body>
+  <div id="myDiv">
+    This text should be visible.
+  </div>
+
+  <script>
+    // Incorrect way to select an element that may not exist immediately
+    const myDiv = document.getElementById("myDiv");
+    if (myDiv) {
+        myDiv.style.display = "none";
+    }
+
+    //This will throw an error because it tries to access innerHTML before the element is loaded in the DOM
+    setTimeout(function(){
+        document.getElementById("anotherDivThatDoesNotExist").innerHTML = "This will cause an error!";
+    },0);
+
+  </script>
+</body>
+</html>
